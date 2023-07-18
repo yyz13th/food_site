@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
         }
     });
 
-    // const modalTimeId = setTimeout(openModal, 5000); //open for later!!!!!!!!!!!!!!!!!!
+    const modalTimeId = setTimeout(openModal, 5000); //open for later!!!!!!!!!!!!!!!!!!
 
     function showModalByScroll () {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
                     <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
                 </div>
             `;
-            
+
         this.parent.append(element);
         }
     }
