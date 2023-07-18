@@ -60,15 +60,15 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
     }
 
     function getZero(num) {
-        if (num >= 0 && num <10) {
+        if (num >= 0 && num < 10) {
             return `0${num}`;
         } else {
             return num;
         }
     }
 
-    function setClock (selector, endtime) {
-        const timer = document.querySelector(selector),
+    function setClock(selector, endtime) {
+            const timer = document.querySelector(selector),
             days = timer.querySelector('#days'),
             hours = timer.querySelector('#hours'),
             minutes = timer.querySelector('#minutes'),
@@ -78,15 +78,15 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
             updateClock();
 
 
-        function updateClock() {
-            const t = getTimeRemaining(endtime);
+            function updateClock() {
+                const t = getTimeRemaining(endtime);
 
-            days.innerHTML = getZero(t.days);
-            hours.innerHTML = getZero(t.hours);
-            minutes.innerHTML = getZero(t.minutes);
-            seconds.innerHTML = getZero(t.seconds);
+                days.innerHTML = getZero(t.days);
+                hours.innerHTML = getZero(t.hours);
+                minutes.innerHTML = getZero(t.minutes);
+                seconds.innerHTML = getZero(t.seconds);
 
-            if (t.total <= 0) {
+                if (t.total<= 0) {
                 clearInterval(timeInterval);
 
             }
@@ -97,39 +97,52 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
 
     //modal 
 
-    const modalTrigger = document.querySelectorAll('[data-modal]'),
-        modal = document.querySelector('.modal'),
-        modalCloseBtn = document.querySelector('[data-close]');
+    const modalTrigger = document.querySelectorAll('[data-modal]'), modal = document.querySelector('.modal'), modalCloseBtn = document.querySelector('[data-close]');
+
+        function openModal (){
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            // modal.classList.toogle('show');
+            document.body.style.overflow = 'hidden';
+            clearInterval(modalTimeId);
+        }
+    
+        function closeModal (){
+            modal.classList.add('hide');
+            modal.classList.remove('show');
+            document.body.style.overflow='';
+        }
 
     modalTrigger.forEach(btn => {
 
-    btn.addEventListener('click', () => {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        // modal.classList.toogle('show');
-        document.body.style.overflow = 'hidden';
-        });
-    });
+        btn.addEventListener('click', openModal);
 
+    }) 
+                
 
-    function closeModal (){
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-        document.body.style.overflow='';
-    }
-
-    modalCloseBtn.addEventListener('click', closeModal());
+    modalCloseBtn.addEventListener('click', closeModal);
 
     modal.addEventListener('click', (e) => {
-        if (e.target === modal ) {
-        closeModal();
+        if (e.target === modal) {
+            closeModal();
         }
-    })
+    });
 
-    document.addEventListener('keydown',(e) => {
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeModal();
         }
-    })
+    });
 
+    const modalTimeId = setTimeout(openModal, 5000);
+
+    function showModalByScroll () {
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
+            openModal();
+            window.removeEventListener('scroll',showModalByScroll)
+    }
+}
+   
+    window.addEventListener('scroll',showModalByScroll);
+    
 });
