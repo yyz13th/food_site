@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
 
     // timer
 
-    const deadLine = '2023-07-15';
+    const deadLine = '2023-07-25';
 
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -95,5 +95,41 @@ document.addEventListener('DOMContentLoaded', () => { // tabs
 
     setClock('.timer', deadLine);
 
+    //modal 
+
+    const modalTrigger = document.querySelectorAll('[data-modal]'),
+        modal = document.querySelector('.modal'),
+        modalCloseBtn = document.querySelector('[data-close]');
+
+    modalTrigger.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        // modal.classList.toogle('show');
+        document.body.style.overflow = 'hidden';
+        });
+    });
+
+
+    function closeModal (){
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow='';
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal());
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal ) {
+        closeModal();
+        }
+    })
+
+    document.addEventListener('keydown',(e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    })
 
 });
