@@ -32,7 +32,7 @@ function forms(formSelector, modalTimeId) {
             // const request = new XMLHttpRequest();
             // request.open('POST', 'server.php');
 
-        
+
 
             // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             const formData = new FormData(form);
@@ -55,7 +55,7 @@ function forms(formSelector, modalTimeId) {
                 showThanksModal(message.failure);
             }).finally(() => {
                 form.reset();
-            })
+            });
         });
     }
 

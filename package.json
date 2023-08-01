@@ -20,5 +20,9 @@
     "json-server": "^0.17.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "es6-promise-polyfill": "^1.2.0",
+    "nodelist-foreach-polyfill": "^1.2.0"
   }
 }
